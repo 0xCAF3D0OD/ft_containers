@@ -19,7 +19,7 @@
   * `std::equal` **and/or** `std::lexicographical_compare`.
   * `std::pair`.
   * `std::make_pair`.
----
-<img src="img/cargo.png" width="100" style="display: block; margin: 0 auto">
 
----
+<p align="center">
+  <img src="img/cargo.png" width="100">
+</p>
