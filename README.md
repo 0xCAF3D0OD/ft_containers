@@ -49,4 +49,4 @@ that provide access to these containers or container adaptors.
   the elements**.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-[<img src="img/containers header file.svg" width="300">]("img/containers header file.svg")
+[<img src="img/containers_header_file.svg" width="300">]("img/containers_header_file.svg")
