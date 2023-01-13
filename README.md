@@ -23,3 +23,19 @@
 <p align="center">
   <img src="img/cargo.png" width="100">
 </p>
+
+## Main concepts
+
+* Containers or container classes **store objects and data**. They are implemented as **class templates**, which allows a 
+great flexibility in the types supported as elements.
+* Containers replicate structures very commonly used in programming:
+  * **dynamic arrays** (`vector`).
+  * queues (queue).
+  * **stacks** (`stack`).
+  * heaps (priority_queue).
+  * linked lists (list).
+  * trees (set).
+  * **associative arrays** (`map`).
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[<img src="img/containers.svg" width="300">]("img/containers.svg")
