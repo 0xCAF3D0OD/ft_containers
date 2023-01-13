@@ -44,9 +44,43 @@ great flexibility in the types supported as elements. They are part of the
 
 * There are **seven standards container classes**, **three container adaptor classes** and **seven header files**
 that provide access to these containers or container adaptors.
-* `stack`, queue and priority_queue are implemented as **container adaptors**. Container adaptors are not full container
+* `stack`, **queue** and **priority_queue** are implemented as **container adaptors**. Container adaptors are not full container
   classes, but **classes that provide a specific interface relying on an object of one of the container classes to handle
   the elements**.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 [<img src="img/containers_header_file.svg" width="300">]("img/containers_header_file.svg")
+
+## Containers
+
+### Vector
+* **`Vectors` are sequence containers representing arrays that can change in size.**
+* `Vectors` are the same as `dynamic arrays` with the ability to **resize itself automatically when an element is inserted 
+or deleted**, with their storage being handled automatically by the container.
+
+* **[Declaration of Vectors in C++](https://www.mygreatlearning.com/blog/vectors-in-c/)**
+
+  * **Header:** 
+    * ````
+      #include<vector>
+      ````
+
+* **[Initialization of Vectors](https://www.mygreatlearning.com/blog/vectors-in-c/)**
+  * **Vector declaration:**
+    * ````
+      vector< object_type > vector_variable_name;
+      ````
+  * **Pushing the values one-by-one in vector using push_back():**
+    * All the elements that **need to be stored in the vector** are pushed back one-by-one in the vector using the 
+    push_back() method.
+    * ````
+      vector_name.push_back(element_value);
+      ````
+  * **Using the overload constructor of the vector Class:**
+    * Is used to **populate a vector** with multiple times the **same value**.
+    * ````
+      vector<object_type> vector_name (number_of_repetition,element_value);
+      ````
+  * **Using Array:**
+### Map
+### Stack
