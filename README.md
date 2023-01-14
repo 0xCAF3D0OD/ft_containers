@@ -49,7 +49,7 @@ that provide access to these containers or container adaptors.
   the elements**.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-[<img src="img/containers_header_file.svg" width="300">]("img/containers_header_file.svg")
+[<img src="img/cpm" width="300">]("img/")
 
 ## Containers
 
@@ -82,5 +82,14 @@ or deleted**, with their storage being handled automatically by the container.
       vector<object_type> vector_name (number_of_repetition,element_value);
       ````
   * **Using Array:**
+    * This method **uses array as a parameter** to be **passed in the vector constructor**.
+    * ````
+      vector<object_type> vector_name {val1,val2,val3,....,valn};
+      ````
+  * **Using already initialized vector:**
+    * This method uses an already created vector to create a new vector with the same values.
+    * ````
+      vector<object_type> vector_name_1{val1,val2,…,valn};
+      ````
 ### Map
 ### Stack
