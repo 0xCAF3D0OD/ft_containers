@@ -49,7 +49,7 @@ that provide access to these containers or container adaptors.
   the elements**.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-[<img src="img/cpm" width="300">]("img/")
+[<img src="img/containers_header_file.svg" width="300">]("img/containers_header_file.svg)
 
 ## Containers
 
