@@ -1,5 +1,10 @@
 ![img/conta.png](img/conta.png)
 
+## Skills addressed 
+
+* Language C++ version 98.
+* STL library container.
+
 ---
 ## Introduction
 
@@ -24,6 +29,7 @@
   <img src="img/cargo.png" width="100">
 </p>
 
+---
 ## Main concepts
 
 * Containers or container classes **store objects and data**. They are implemented as **class templates**, which allows a 
@@ -58,38 +64,19 @@ that provide access to these containers or container adaptors.
 * `Vectors` are the same as `dynamic arrays` with the ability to **resize itself automatically when an element is inserted 
 or deleted**, with their storage being handled automatically by the container.
 
+
 * **[Declaration of Vectors in C++](https://www.mygreatlearning.com/blog/vectors-in-c/)**
 
-  * **Header:** 
-    * ````
-      #include<vector>
+  * the C++ **definition of std::vector** from <vector> header library file:
+    ````c++
+      template < class T, class Allocator = std::allocator<T> > class vector;
       ````
+  * `T` - The type of the **element**, may be **substituted by any other data type** including user-defined type.
+  * `Allocator` - The Type of **allocator** object. By default, the allocator class template is used. 
+  Which defines the memory allocation/de-allocation model, construct/destroy elements and is value-independent.
+
 
 * **[Initialization of Vectors](https://www.mygreatlearning.com/blog/vectors-in-c/)**
-  * **Vector declaration:**
-    * ````
-      vector< object_type > vector_variable_name;
-      ````
-  * **Pushing the values one-by-one in vector using push_back():**
-    * All the elements that **need to be stored in the vector** are pushed back one-by-one in the vector using the 
-    push_back() method.
-    * ````
-      vector_name.push_back(element_value);
-      ````
-  * **Using the overload constructor of the vector Class:**
-    * Is used to **populate a vector** with multiple times the **same value**.
-    * ````
-      vector<object_type> vector_name (number_of_repetition,element_value);
-      ````
-  * **Using Array:**
-    * This method **uses array as a parameter** to be **passed in the vector constructor**.
-    * ````
-      vector<object_type> vector_name {val1,val2,val3,....,valn};
-      ````
-  * **Using already initialized vector:**
-    * This method uses an already created vector to create a new vector with the same values.
-    * ````
-      vector<object_type> vector_name_1{val1,val2,…,valn};
-      ````
+
 ### Map
 ### Stack
