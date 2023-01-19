@@ -52,6 +52,8 @@ great flexibility in the types supported as elements. They are part of the
 
 * There are **seven standards container classes**, **three container adaptor classes** and **seven header files**
 that provide access to these containers or container adaptors.
+ 
+ 
 * `stack`, **queue** and **priority_queue** are implemented as **container adaptors**. Container adaptors are not full container
   classes, but **classes that provide a specific interface relying on an object of one of the container classes to handle
   the elements**.
