@@ -5,7 +5,6 @@
 * Language C++ version 98.
 * STL library container.
 
----
 ## Introduction
 
 
@@ -29,7 +28,6 @@
   <img src="img/cargo.png" width="100">
 </p>
 
----
 ## Main concepts
 
 * Containers or container classes **store objects and data**. They are implemented as **class templates**, which allows a 
