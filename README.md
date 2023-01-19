@@ -35,6 +35,8 @@
 * Containers or container classes **store objects and data**. They are implemented as **class templates**, which allows a 
 great flexibility in the types supported as elements. They are part of the 
 [**C++ Standard Template Library**](https://github.com/0xCAF3D0OD/CPP/tree/main/module_08)
+ 
+ 
 * Containers replicate structures very commonly used in programming:
   * **dynamic arrays** (`vector`).
   * queues (queue).
