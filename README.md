@@ -89,8 +89,4 @@ Which defines the memory allocation/de-allocation model, construct/destroy eleme
     **represent as** `allocator`.
 
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  [<img src="img/tableau_alloc.svg" width="300">]("img/tableau_alloc.svg)
-    
-
-### Map
-### Stack
+  [<img src="github.com/0xCAF3D0OD/ft_containers/blob/main/img/tableau_alloc.svg" width="300">]("github.com/0xCAF3D0OD/ft_containers/blob/main/img/tableau_alloc.svg)
