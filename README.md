@@ -48,11 +48,14 @@ great flexibility in the types supported as elements. They are part of the
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 [<img src="img/containers.svg" width="300">]("img/containers.svg")
 
-* There are **seven standards container classes**, **three container adaptor classes** and **seven header files**
-that provide access to these containers or container adaptors.
 * `stack`, **queue** and **priority_queue** are implemented as **container adaptors**. Container adaptors are not full container
   classes, but **classes that provide a specific interface relying on an object of one of the container classes to handle
   the elements**.
+
+
+* There are **seven standards container classes**, **three container adaptor classes** and **seven header files**
+  that provide access to these containers or container adaptors.
+
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 [<img src="img/containers_header_file.svg" width="300">]("img/containers_header_file.svg)
@@ -60,23 +63,31 @@ that provide access to these containers or container adaptors.
 ## Containers
 
 ### Vector
+
 * **`Vectors` are sequence containers representing arrays that can change in size.**
 * `Vectors` are the same as `dynamic arrays` with the ability to **resize itself automatically when an element is inserted 
 or deleted**, with their storage being handled automatically by the container.
 
+#### **[Declaration of Vectors in C++](https://www.mygreatlearning.com/blog/vectors-in-c/)**
 
-* **[Declaration of Vectors in C++](https://www.mygreatlearning.com/blog/vectors-in-c/)**
+* the C++ **definition of std::vector** from <vector> header library file:
+  ````c++
+    template < class T, class Allocator = std::allocator<T> > class vector;
+    ````
+* `T` - The type of the **element**, may be **substituted by any other data type** including user-defined type.
+* `Allocator` - The Type of **allocator** object. By default, the allocator class template is used. 
+Which defines the memory allocation/de-allocation model, construct/destroy elements and is value-independent.
 
-  * the C++ **definition of std::vector** from <vector> header library file:
-    ````c++
-      template < class T, class Allocator = std::allocator<T> > class vector;
-      ````
-  * `T` - The type of the **element**, may be **substituted by any other data type** including user-defined type.
-  * `Allocator` - The Type of **allocator** object. By default, the allocator class template is used. 
-  Which defines the memory allocation/de-allocation model, construct/destroy elements and is value-independent.
+#### **[Member types](https://riptutorial.com/cplusplus/example/14397/member-types-and-aliases)**
 
+* Member Types are **type aliases** contained within, and treated as members of, the class itself.
+  * `value_type` - first template parameter **represent as** `T`.
+  * `std::allocator` - Allocators are **classes that define memory models** to be used by some parts of the Standard Library.
+  **represent as** `allocator`.
 
-* **[Initialization of Vectors](https://www.mygreatlearning.com/blog/vectors-in-c/)**
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  [<img src="img/tableau_alloc.svg" width="300">]("img/tableau_alloc.svg)
+    
 
 ### Map
 ### Stack
