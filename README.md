@@ -5,7 +5,6 @@
 * Language C++ version 98.
 * STL library container.
 
----
 ## Introduction
 
 
@@ -29,12 +28,13 @@
   <img src="img/cargo.png" width="100">
 </p>
 
----
 ## Main concepts
 
 * Containers or container classes **store objects and data**. They are implemented as **class templates**, which allows a 
 great flexibility in the types supported as elements. They are part of the 
 [**C++ Standard Template Library**](https://github.com/0xCAF3D0OD/CPP/tree/main/module_08)
+ 
+ 
 * Containers replicate structures very commonly used in programming:
   * **dynamic arrays** (`vector`).
   * queues (queue).
@@ -47,6 +47,9 @@ great flexibility in the types supported as elements. They are part of the
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 [<img src="img/containers.svg" width="300">]("img/containers.svg")
+
+* There are **seven standards container classes**, **three container adaptor classes** and **seven header files**
+that provide access to these containers or container adaptors.
 
 * `stack`, **queue** and **priority_queue** are implemented as **container adaptors**. Container adaptors are not full container
   classes, but **classes that provide a specific interface relying on an object of one of the container classes to handle
@@ -83,7 +86,7 @@ Which defines the memory allocation/de-allocation model, construct/destroy eleme
 * Member Types are **type aliases** contained within, and treated as members of, the class itself.
   * `value_type` - first template parameter **represent as** `T`.
   * `std::allocator` - Allocators are **classes that define memory models** to be used by some parts of the Standard Library.
-  **represent as** `allocator`.
+    **represent as** `allocator`.
 
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   [<img src="img/tableau_alloc.svg" width="300">]("img/tableau_alloc.svg)
