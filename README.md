@@ -46,7 +46,7 @@ great flexibility in the types supported as elements. They are part of the
 
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-[<img src="img/containers.svg" width="300">]("img/containers.svg")
+[<img src="img/containers.svg" width="300">]("https://github.com/0xCAF3D0OD/ft_containers/blob/main/img/containers.svg")
 
 * There are **seven standards container classes**, **three container adaptor classes** and **seven header files**
 that provide access to these containers or container adaptors.
@@ -61,7 +61,15 @@ that provide access to these containers or container adaptors.
 
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-[<img src="img/containers_header_file.svg" width="300">]("img/containers_header_file.svg)
+[<img src="img/containers_header_file.svg" width="300">]("https://github.com/0xCAF3D0OD/ft_containers/blob/main/img/containers_header_file.svg)
+
+
+<details>
+  <summary><b>General view on which container to adopt according to the situation</b></summary>
+
+  [<img src="img/which_container.svg" width="500">]("https://github.com/0xCAF3D0OD/ft_containers/blob/main/img/which_container.svg)
+</details>
+
 
 ## Containers
 
@@ -84,9 +92,11 @@ Which defines the memory allocation/de-allocation model, construct/destroy eleme
 #### **[Member types](https://riptutorial.com/cplusplus/example/14397/member-types-and-aliases)**
 
 * Member Types are **type aliases** contained within, and treated as members of, the class itself.
-  * `value_type` - first template parameter **represent as** `T`.
-  * `std::allocator` - Allocators are **classes that define memory models** to be used by some parts of the Standard Library.
-    **represent as** `allocator`.
+  * `value_type` - first template parameter - **Represent as** `T`.
+  * `std::allocator` - Allocators are **classes that define memory models** to be used by some parts of the Standard Library -
+   **Represent as** `allocator`.
 
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   [<img src="img/tableau_alloc.svg" width="300">]("https://github.com/0xCAF3D0OD/ft_containers/blob/main/img/tableau_alloc.svg)
+
+  * 
