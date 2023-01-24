@@ -92,11 +92,25 @@ Which defines the memory allocation/de-allocation model, construct/destroy eleme
 #### **[Member types](https://riptutorial.com/cplusplus/example/14397/member-types-and-aliases)**
 
 * Member Types are **type aliases** contained within, and treated as members of, the class itself.
-  * `value_type` - first template parameter - **Represent as** `T`.
+  * `value_type` - First template parameter - **Represent as** `T`.
   * `std::allocator` - Allocators are **classes that define memory models** to be used by some parts of the Standard Library -
    **Represent as** `allocator`.
 
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   [<img src="img/tableau_alloc.svg" width="300">]("https://github.com/0xCAF3D0OD/ft_containers/blob/main/img/tableau_alloc.svg)
 
-  * 
+  * `std::random_access_iterator_tag` - Random-access iterators are **[iterators](https://cplusplus.com/reference/iterator/iterator/)**
+  that can be used to **access elements at an arbitrary offset position** relative to the element they point to, 
+  **offering the same functionality as pointers**.
+
+  * Empty class to identify the category of an iterator as a random-access iterator.
+
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  [<img src="img/tableau_iterator.svg" width="300">]("https://github.com/0xCAF3D0OD/ft_containers/blob/main/img/tableau_iterator.svg)
+  
+  * The properties of each **[iterators category](https://cplusplus.com/reference/iterator/)**
+
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  [<img src="img/hierarchy_iterator.svg" width="300">]("https://github.com/0xCAF3D0OD/ft_containers/blob/main/img/hierarchy_iterator.svg)
+
+  
