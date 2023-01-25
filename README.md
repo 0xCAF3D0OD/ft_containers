@@ -122,9 +122,11 @@ Which defines the memory allocation/de-allocation model, construct/destroy eleme
   [<img src="img/tableau_reverse_iterator.svg" width="240">]("https://github.com/0xCAF3D0OD/ft_containers/blob/main/img/tableau_reverse_iterator.svg)
  
  
-  * `difference_type` - A **signed integral type**, identical to: `iterator_traits<iterator>::difference_type`. -
-  the same as `ptrdiff_t`.
+  * `difference_type` - A **signed integral type**, identical to: `iterator_traits<iterator>::difference_type`.
+
+    **-** The same as `ptrdiff_t`.
 
 
-  * `size_type` - An **unsigned integral type** that can represent any non-negative value of difference_type. - 
-  the same as `size_t`.
+  * `size_type` - An **unsigned integral type** that can represent any non-negative value of difference_type.
+
+    **-** The same as `size_t`.
