@@ -48,8 +48,6 @@ great flexibility in the types supported as elements. They are part of the
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 [<img src="img/containers.svg" width="300">]("https://github.com/0xCAF3D0OD/ft_containers/blob/main/img/containers.svg")
 
-* There are **seven standards container classes**, **three container adaptor classes** and **seven header files**
-that provide access to these containers or container adaptors.
 
 * `stack`, **queue** and **priority_queue** are implemented as **container adaptors**. Container adaptors are not full container
   classes, but **classes that provide a specific interface relying on an object of one of the container classes to handle
@@ -93,11 +91,14 @@ Which defines the memory allocation/de-allocation model, construct/destroy eleme
 
 * Member Types are **type aliases** contained within, and treated as members of, the class itself.
   * `value_type` - First template parameter - **Represent as** `T`.
+
+
   * `std::allocator` - Allocators are **classes that define memory models** to be used by some parts of the Standard Library -
    **Represent as** `allocator`.
 
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   [<img src="img/tableau_alloc.svg" width="300">]("https://github.com/0xCAF3D0OD/ft_containers/blob/main/img/tableau_alloc.svg)
+
 
   * `std::random_access_iterator_tag` - Random-access iterators are **[iterators](https://cplusplus.com/reference/iterator/iterator/)**
   that can be used to **access elements at an arbitrary offset position** relative to the element they point to, 
@@ -113,4 +114,17 @@ Which defines the memory allocation/de-allocation model, construct/destroy eleme
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   [<img src="img/hierarchy_iterator.svg" width="300">]("https://github.com/0xCAF3D0OD/ft_containers/blob/main/img/hierarchy_iterator.svg)
 
-  
+
+  * `std::reverse_iterator` - This class **reverses the direction** in which a bidirectional or random-access iterator 
+  iterates through a range.
+
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  [<img src="img/tableau_reverse_iterator.svg" width="240">]("https://github.com/0xCAF3D0OD/ft_containers/blob/main/img/tableau_reverse_iterator.svg)
+ 
+ 
+  * `difference_type` - A **signed integral type**, identical to: `iterator_traits<iterator>::difference_type`. -
+  the same as `ptrdiff_t`.
+
+
+  * `size_type` - An **unsigned integral type** that can represent any non-negative value of difference_type. - 
+  the same as `size_t`.
