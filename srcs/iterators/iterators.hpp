@@ -52,36 +52,34 @@ namespace ft
 	};
 
 	//iterator tag
+	///Marking intput iterators.
 	struct input_iterator_tag {};
 
+	///Marking output iterators.
 	struct output_iterator_tag {};
 
+	/// Forward iterators support a superset of input iterator operations.
 	struct forward_iterator_tag {};
 
+	/// Bidirectional iterators support a superset of forward iterator operations.
 	struct bidirectional_iterator_tag {};
 
-	struct random_access_iterator_tag    : public bidirectional_iterator_tag
-	{
-
-	};
+	/// Random-access iterators support a superset of bidirectional iterators operations
+	struct random_access_iterator_tag : public bidirectional_iterator_tag
+	{};
 
 	template <class T>
 	struct is_default_constructible
-	{
-
-	};
+	{};
 
 	template <class T>
 	struct is_copy_constructible
-	{
-
-	};
+	{};
 
 	template <class T>
 	struct is_copy_assignable
-	{
+	{};
 
-	};
 };
 
 #endif //FT_CONTAINERS_ITERATORS_HPP
