@@ -23,9 +23,9 @@ private:
 	iterator_type _iterT;
 public:
 	reverse_iterator(void) : _iterT(0) {}
+
 	/// explicit: prevents implicit conversions. This means that the constructor will not be called when an implicit
 	/// conversion is required.
-
 	explicit reverse_iterator (iterator_type it) : _iterT(it) {}
 
 	/// copy constructor: The template allows the reverse iterator to take any type of iterator
@@ -42,13 +42,13 @@ public:
 	}
 
 	/// Returns the underlying base(_iterT who is the iterator) iterator.
-	iterator_type base() const
+	iterator_type base(void) const
 	{
 		return (_iterT);
 	}
 
 	/// Create an attribute tmp in the function and return it.
-	reference operator*() const
+	reference operator*(void) const
 	{
 		Iter tmp = _iterT;
 		return *--tmp;
@@ -62,6 +62,23 @@ public:
 	{
 		return (base()[-n-1])
 	}
-	
+
+	reverse_iterator& operator++(void)
+	{
+		this->_iterT++;
+		return (*this);
+	}
+
+	reverse_iterator& operator--(void)
+	{
+		this->_iterT--;
+		return (*this);
+	}
+
+	reverse_iterator operator++( int bfr)
+	{
+		bfr = &_iterT;
+		return (bfr);
+	}
 };
 #endif //FT_CONTAINERS_REVERSE_ITERATOR_HPP
