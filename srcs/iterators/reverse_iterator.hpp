@@ -6,7 +6,8 @@
 #define FT_CONTAINERS_REVERSE_ITERATOR_HPP
 
 #include <cstddef>
-//#include "iterators.hpp"
+#include "iterators.hpp"
+#include "iterator_trait.hpp"
 
 namespace ft
 {

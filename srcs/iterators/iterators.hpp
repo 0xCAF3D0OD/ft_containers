@@ -19,38 +19,6 @@ namespace ft
 		typedef Reference reference;
 		typedef Category  iterator_category;
 	};
-
-	//iterator traits
-	template <class Iterator>
-	struct iterator_traits
-	{
-		typedef T         value_type;
-		typedef Distance  difference_type;
-		typedef Pointer   pointer;
-		typedef Reference reference;
-		typedef Category  iterator_category;
-	};
-
-	template <class T>
-	struct iterator_traits<T*>
-	{
-		typedef T         value_type;
-		typedef Distance  difference_type;
-		typedef Pointer   pointer;
-		typedef Reference reference;
-		typedef Category  iterator_category;
-	};
-
-	template <class T>
-	struct iterator_traits<const T*>
-	{
-		typedef T         value_type;
-		typedef Distance  difference_type;
-		typedef Pointer   pointer;
-		typedef Reference reference;
-		typedef Category  iterator_category;
-	};
-
 	//iterator tag
 	///Marking intput iterators.
 	struct input_iterator_tag {};
@@ -67,19 +35,18 @@ namespace ft
 	/// Random-access iterators support a superset of bidirectional iterators operations
 	struct random_access_iterator_tag : public bidirectional_iterator_tag
 	{};
-
-	template <class T>
-	struct is_default_constructible
-	{};
-
-	template <class T>
-	struct is_copy_constructible
-	{};
-
-	template <class T>
-	struct is_copy_assignable
-	{};
-
+//
+//	template <class T>
+//	struct is_default_constructible
+//	{};
+//
+//	template <class T>
+//	struct is_copy_constructible
+//	{};
+//
+//	template <class T>
+//	struct is_copy_assignable
+//	{};
 
 };
 
