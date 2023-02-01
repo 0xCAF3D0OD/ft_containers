@@ -16,14 +16,16 @@ DEBUGS		:= ${patsubst %, ${D_DIR}%, ${OBJS_FILES}}
 NAME		= converter
 
 CXX			= g++
-HXX			= vector.hpp
+HXX			= iterators/reverse_iterator.hpp
+#vector.hpp
+
 
 AR			= ar rcs
 MKDIR		= mkdir
 CP			= cp -f
 RM			= rm -f
 
-CXXFLAGS		= -std=c++98 -Wall -Wextra -Werror -g
+CXXFLAGS		= -std=c++20 -Wall -Wextra -Werror -g
 
 
 all:		${NAME}
