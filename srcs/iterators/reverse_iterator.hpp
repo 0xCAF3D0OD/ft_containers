@@ -9,6 +9,11 @@
 #include "iterators.hpp"
 #include "iterator_trait.hpp"
 
+/*
+ * std::reverse_iterator is an iterator adaptor that reverses the direction of a given iterator
+ * when provided with a bidirectional iterator, std::reverse_iterator produces a new iterator that moves from the end
+ * to the beginning of the sequence defined by the underlying bidirectional iterator.
+ * */
 namespace ft
 {
 	template <class Iter>
@@ -22,7 +27,7 @@ namespace ft
 		typedef typename std::iterator_traits<Iter>::pointer			pointer;
 		typedef typename std::iterator_traits<Iter>::reference			reference;
 
-	protected:
+		// ? pourquoi un iterator type pour le reverse et un pointeur pour le random_access
 	private:
 		iterator_type _iterT;
 	public:
@@ -40,7 +45,7 @@ namespace ft
 		template< class U >
 		reverse_iterator &operator=(const reverse_iterator<U> &other)
 		{
-			if (_iterT != &other)
+			if (this != &other)
 				_iterT = other._iterT;
 			return (*this);
 		}
@@ -121,6 +126,8 @@ namespace ft
 			return (*this);
 		}
 
+		// The purpose of the friend kewword is for make the access to the data easier.
+		// `friend` let you use the variable lhs and rhs in one time, and not two like the conventional way with a template.
 		friend bool operator==(const reverse_iterator<Iter> &lhs, const reverse_iterator<Iter> &rhs) {
 			return (lhs.base() == rhs.base());
 		}

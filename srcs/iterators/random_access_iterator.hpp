@@ -21,92 +21,118 @@ namespace ft
 	class random_access_iterator : public ft::iterator<random_access_iterator_tag, Type>
 	{
 	protected:
-		Type *_ptr;
+		Pointer _ptr;
 	public:
 		random_access_iterator(void) : _ptr(nullptr) {}
-		random_access_iterator(Type *rhs) : _ptr(rhs) {}
-		random_access_iterator(const Iterator &rhs) : _ptr(rhs._ptr) {}
+		random_access_iterator(Pointer rhs) : _ptr(rhs) {}
+		template< class type >
+		random_access_iterator(const random_access_iterator<type> &src) : _ptr(NULL) {
+			*this = srcs;
+		}
 
 		template< class U >
 		random_access_iterator &operator=(const random_access_iterator<U> &other)
 		{
-			if (_iterT != &other)
-				_iterT = other._iterT;
+			if (this != &other)
+				_ptr = other._ptr;
 			return (*this);
 		}
 
-		/// Returns the underlying base(_iterT who is the iterator) iterator.
-		iterator_type base(void) const
-		{
-			return (_iterT);
+		// Returns the underlying base(_ptr who is the iterator) iterator.
+		Pointer base(void) const {
+			return (_ptr);
 		}
 
-		/// Create an attribute tmp in the function and return it.
-		reference operator*(void) const
-		{
-			Iter tmp = _iterT;
-			return (*--tmp);
+		// Create an attribute tmp in the function and return it.
+		reference operator*(void) const {
+			return (*(this->_ptr));
 		}
 
 		/// return a reference to the element at relative location.
 		/// It returns the element at index "n" (specified as difference_type) starting from the end of
 		/// the underlying iterator (base()). The formula used to access the element is "base()[-n-1]" which means
 		/// that the element is retrieved starting from the end (base()[-1]) and moving left by n positions (-n).
-		reference operator[](difference_type n) const
-		{
-			return (base()[-n-1]);
+		reference operator[](difference_type n) const {
+			return (*(this->_ptr + n));
 		}
 
-		random_access_iterator& operator++(void)
-		{
-			this->_iterT++;
-			return (*this);
+		random_access_iterator &operator++(void) {
+			return (this->_ptr++);
 		}
 
-		random_access_iterator& operator--(void)
-		{
-			this->_iterT--;
-			return (*this);
+		random_access_iterator &operator--(void) {
+			return (this->_ptr--);
 		}
 
-		/// Post-increments or post-decrements by one respectively.
+		// Post-increments or post-decrements by one respectively.
 		random_access_iterator operator++(int)
 		{
-			random_access_iterator bfr = *_iterT;
-			this->_iterT++;
+			random_access_iterator bfr = *_ptr;
+			this->_ptr++;
 			return (bfr);
 		}
 
-		/// Post-increments or post-decrements by one respectively.
+		// Post-increments or post-decrements by one respectively.
 		random_access_iterator operator--(int)
 		{
-			random_access_iterator bfr = *_iterT;
-			this->_iterT--;
+			random_access_iterator bfr = *_ptr;
+			this->_ptr--;
 			return (bfr);
 		}
 
-		///Returns an iterator which is advanced by n or -n positions respectively.
+		// Give the lvalue of the element where is the random_access_iterator.
+		// Return the lvalue (the pointer to the element).
+		Pointer operator->(void) {
+			return &(this->operator*());
+		}
+
+
+		// Returns an iterator which is advanced by n or -n positions respectively.
 		random_access_iterator operator+(difference_type n) const {
 			return (random_access_iterator(base()+n));
 		}
 
-		///Returns an iterator which is advanced by n or -n positions respectively.
+		// Returns an iterator which is advanced by n or -n positions respectively.
 		random_access_iterator operator-(difference_type n) const {
 			return (random_access_iterator(base()-n));
 		}
 
-		///Advances the iterator by n or -n positions respectively.
+		// Advances the iterator by n or -n positions respectively.
 		random_access_iterator& operator+=(difference_type n)
 		{
-			this->_iterT += n;
+			this->_ptr += n;
 			return (*this);
 		}
 
-		///Advances the iterator by n or -n positions respectively.
+		// Advances the iterator by n or -n positions respectively.
 		random_access_iterator& operator-=(difference_type n)
 		{
-			this->_iterT -= n;
+			this->_ptr -= n;
 			return (*this);
+		}
+
+		friend bool operator==(const random_access_iterator<Type> &lhs, const random_access_iterator<Type> &rhs) {
+			return (lhs.base() == rhs.base());
+		}
+
+		friend bool operator!=(const random_access_iterator<Type> &lhs, const random_access_iterator<Type> &rhs) {
+			return (lhs.base() != rhs.base());
+		}
+
+		friend bool operator<(const random_access_iterator<Type> &lhs, const random_access_iterator<Type> &rhs) {
+			return (lhs.base() < rhs.base());
+		}
+
+		friend bool operator<=(const random_access_iterator<Type> &lhs, const random_access_iterator<Type> &rhs) {
+			return (lhs.base() <= rhs.base());
+		}
+
+		friend bool operator>(const random_access_iterator<Type> &lhs, const random_access_iterator<Type> &rhs) {
+			return (lhs.base() > rhs.base());
+		}
+
+		friend bool operator>=(const random_access_iterator<Type> &lhs, const random_access_iterator<Type> &rhs) {
+			return (lhs.base() >= rhs.base());
 		}
 	}
 }

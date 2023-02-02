@@ -19,6 +19,7 @@ namespace ft
 		typedef Reference reference;
 		typedef Category  iterator_category;
 	};
+
 	//iterator tag
 	///Marking intput iterators.
 	struct input_iterator_tag {};
