@@ -41,6 +41,9 @@ namespace ft
 		template <class Iterator>
 		reverse_iterator (const reverse_iterator<Iterator> &rev_it){ *this = rev_it.base(); }
 
+		//destructor
+		~reverse_iterator();
+
 		/// assigns another iterator adaptor
 		template< class U >
 		reverse_iterator &operator=(const reverse_iterator<U> &other)

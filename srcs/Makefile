@@ -19,8 +19,8 @@ CXX			= g++
 HXX			= iterators/iterators.hpp\
 			  iterators/iterator_trait.hpp\
 			  iterators/reverse_iterator.hpp\
-			  iterators/random_access_iterator.hpp
-#vector.hpp
+			  iterators/random_access_iterator.hpp\
+			  vector/vector.hpp
 
 
 AR			= ar rcs
