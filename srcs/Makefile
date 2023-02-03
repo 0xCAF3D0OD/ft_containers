@@ -16,7 +16,10 @@ DEBUGS		:= ${patsubst %, ${D_DIR}%, ${OBJS_FILES}}
 NAME		= converter
 
 CXX			= g++
-HXX			= iterators/reverse_iterator.hpp
+HXX			= iterators/iterators.hpp\
+			  iterators/iterator_trait.hpp\
+			  iterators/reverse_iterator.hpp\
+			  iterators/random_access_iterator.hpp
 #vector.hpp
 
 

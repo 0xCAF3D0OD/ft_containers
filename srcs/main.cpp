@@ -8,7 +8,7 @@
 
 #include "iterators/reverse_iterator.hpp"
 
-int main()
+int main(void)
 {
 	int a[] = {0, 1, 2, 3};
 	//            ↑  └───── x, y
@@ -34,23 +34,4 @@ int main()
 			<< "x <= z ? " << (x <= z) << '\n' // true
 			<< std::endl;
 
-	ft::reverse_iterator<int*>
-			x_1 = {std::rend(a) - std::size(a)},
-			y_1 = {std::rend(a) - std::size(a)},
-			z_1 = {std::rbegin(a) + 1};
-
-	std::cout
-			<< std::boolalpha
-			<< "*x_1 == " << *x_1 << '\n' // 3
-			<< "*y_1 == " << *y_1 << '\n' // 3
-			<< "*z_1 == " << *z_1 << '\n' // 2
-			<< "x_1 == y_1 ? " << (x_1 == y_1) << '\n' // true
-			<< "x_1 != y_1 ? " << (x_1 != y_1) << '\n' // false
-			<< "x_1 <  y_1 ? " << (x_1 <  y_1) << '\n' // false
-			<< "x_1 <= y_1 ? " << (x_1 <= y_1) << '\n' // true
-			<< "x_1 == z_1 ? " << (x_1 == z_1) << '\n' // false
-			<< "x_1 != z_1 ? " << (x_1 != z_1) << '\n' // true
-			<< "x_1 <  z_1 ? " << (x_1 <  z_1) << '\n' // true
-			<< std::endl;
-	return (0);
 }
