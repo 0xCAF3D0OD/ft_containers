@@ -5,8 +5,56 @@
 #ifndef FT_CONTAINERS_RANDOM_ACCESS_ITERATOR_HPP
 #define FT_CONTAINERS_RANDOM_ACCESS_ITERATOR_HPP
 
-#include "iterators.hpp"
 #include "iterator_trait.hpp"
+namespace ft
+{
+	///std::iterator_traits is the type trait class that provides uniform interface to the properties of LegacyIterator
+	/// types. This makes it possible to implement algorithms only in terms of iterators.
+
+	///Iterator - the iterator type to retrieve properties for.
+	template <class Iter>
+	class iterator_traits
+	{
+		//The iterator category. It can be one of these:
+		// 1. input_iterator_tag,
+		// 2. output_iterator_tag,
+		// 3. forward_iterator_tag,
+		// 4. bidirectional_iterator_tag,
+		// 5. random_access_iterator_tag.
+		typedef typename Iter::iterator_category	iterator_category;
+
+		//Type to express the result of subtracting one iterator from another.
+		typedef typename Iter::difference_type		difference_type;
+
+		//The type of the element the iterator can point to.
+		typedef typename Iter::value_type			value_type;
+
+		//The type of pointer to an element the iterator can point to.
+		typedef typename Iter::pointer				pointer;
+
+		//The type of reference to an element the iterator can point to.
+		typedef typename Iter::reference			reference;
+	};
+	///specializations determine the critical types associated with an object pointer of type Type* or const Type*.
+	template <class T>
+	class iterator_traits<T*>
+	{
+		typedef typename std::random_access_iterator_tag	iterator_category;
+		typedef typename std::ptrdiff_t						difference_type;
+		typedef T											value_type;
+		typedef T*											pointer;
+		typedef T&											reference;
+	};
+
+	template <class T>
+	class iterator_traits<const T*>
+	{
+		typedef typename std::random_access_iterator_tag	iterator_category;
+		typedef typename std::ptrdiff_t						difference_type;
+		typedef T											value_type;
+		typedef const T*									pointer;
+		typedef const T&									reference;
+	};
 
 /*
 * Random-access iterators allow to access elements at an
@@ -14,23 +62,27 @@
 * to. This is the most complete iterators. All pointer types
 * are also valid random-access-iterators.
 */
-
-namespace ft
-{
-	template<Type>
-	class random_access_iterator : public ft::iterator<random_access_iterator_tag, Type>
+	template<class Iter>
+	class random_access_iterator
 	{
+	public:
+		typedef Iter															iterator_type;
+		typedef typename ft::iterator_traits<iterator_type>::value_type			value_type;
+		typedef typename ft::iterator_traits<iterator_type>::pointer			pointer;
+		typedef typename ft::iterator_traits<iterator_type>::reference			reference;
+		typedef typename ft::iterator_traits<iterator_type>::difference_type	difference_type;
+		typedef typename ft::iterator_traits<iterator_type>::iterator_category	iterator_category;
 	protected:
-		Pointer _ptr;
+		pointer _ptr;
 	public:
 
 		//Default constructor
 		random_access_iterator(void) : _ptr(nullptr) {}
-		random_access_iterator(Pointer rhs) : _ptr(rhs) {}
+		random_access_iterator(pointer rhs) : _ptr(rhs) {}
 
 		//Copy constructor
 		template< class type >
-		random_access_iterator(const random_access_iterator<type> &src) : _ptr(NULL) {
+		random_access_iterator(const random_access_iterator<type> &srcs) : _ptr(NULL) {
 			*this = srcs;
 		}
 
@@ -47,13 +99,13 @@ namespace ft
 		}
 
 		// Returns the underlying base(_ptr who is the iterator) iterator.
-		Pointer base(void) const {
+		pointer base(void) const {
 			return (this->_ptr);
 		}
 
 		// Give the lvalue of the element where is the random_access_iterator.
 		// Return the lvalue (the pointer to the element).
-		Pointer operator->(void) {
+		pointer operator->(void) {
 			return &(this->operator*());
 		}
 
@@ -165,6 +217,6 @@ namespace ft
 		friend bool operator>=(const random_access_iterator<Type> &lhs, const random_access_iterator<Type> &rhs) {
 			return (lhs.base() >= rhs.base());
 		}
-	}
+	};
 }
 #endif //FT_CONTAINERS_RANDOM_ACCESS_ITERATOR_HPP

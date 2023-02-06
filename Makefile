@@ -7,7 +7,7 @@ SRCS		:= ${patsubst %, ${SRCS_DIR}%, ${SRCS_FILES}}
 
 O_DIR		= ./objs/
 D_DIR		= ./debugs/
-HEADS		= -I./includes/
+HEADS		= -I./includes/ -I ./includes/iterators
 
 OBJS_FILES	:= ${SRCS_FILES:.cpp=.o}
 OBJS		:= ${patsubst %, ${O_DIR}%, ${OBJS_FILES}}
@@ -16,11 +16,12 @@ DEBUGS		:= ${patsubst %, ${D_DIR}%, ${OBJS_FILES}}
 NAME		= converter
 
 CXX			= g++
-HXX			= iterators/iterators.hpp\
-			  iterators/iterator_trait.hpp\
-			  iterators/reverse_iterator.hpp\
-			  iterators/random_access_iterator.hpp\
-			  vector/vector.hpp
+HXX			= incl/iterators/iterators.hpp\
+			  incl/iterators/iterator_trait.hpp\
+			  incl/iterators/reverse_iterator.hpp\
+			  incl/iterators/random_access_iterator.hpp\
+			  incl/vector.hpp\
+			  incl/utils.hpp
 
 
 AR			= ar rcs
@@ -28,12 +29,12 @@ MKDIR		= mkdir
 CP			= cp -f
 RM			= rm -f
 
-CXXFLAGS		= -std=c++20 -Wall -Wextra -Werror -g
+CXXFLAGS	= -std=c++98 -Wall -Wextra -Werror -g
 
 
 all:		${NAME}
 
-${NAME}:	${O_DIR} ${OBJS} ./Makefile ${HXX}
+${NAME}:	${O_DIR} ${OBJS} Makefile ${HXX}
 			${CXX} ${CXXFLAGS} -o ${NAME} ${OBJS} ${LIBS}
 
 #Create objects directory

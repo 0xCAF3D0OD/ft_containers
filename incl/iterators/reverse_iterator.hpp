@@ -5,9 +5,18 @@
 #ifndef FT_CONTAINERS_REVERSE_ITERATOR_HPP
 #define FT_CONTAINERS_REVERSE_ITERATOR_HPP
 
+#pragma once
+
+#include <tuple>
+#include <memory>
 #include <cstddef>
+#include <iostream>
+#include <stdexcept>
+
+#include "../utils.hpp"
 #include "iterators.hpp"
 #include "iterator_trait.hpp"
+#include "random_access_iterator.hpp"
 
 /*
  * std::reverse_iterator is an iterator adaptor that reverses the direction of a given iterator
@@ -21,11 +30,11 @@ namespace ft
 	{
 	public:
 		typedef Iter													iterator_type;
-		typedef typename std::iterator_traits<Iter>::iterator_category	iterator_category;
-		typedef typename std::iterator_traits<Iter>::value_type			value_type;
-		typedef typename std::iterator_traits<Iter>::difference_type	difference_type;
-		typedef typename std::iterator_traits<Iter>::pointer			pointer;
-		typedef typename std::iterator_traits<Iter>::reference			reference;
+		typedef typename ft::iterator_traits<Iter>::iterator_category	iterator_category;
+		typedef typename ft::iterator_traits<Iter>::value_type			value_type;
+		typedef typename ft::iterator_traits<Iter>::difference_type		difference_type;
+		typedef typename ft::iterator_traits<Iter>::pointer				pointer;
+		typedef typename ft::iterator_traits<Iter>::reference			reference;
 
 		// ? pourquoi un iterator type pour le reverse et un pointeur pour le random_access
 	private:

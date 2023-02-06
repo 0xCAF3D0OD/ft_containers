@@ -5,7 +5,17 @@
 #ifndef FT_CONTAINERS_ITERATOR_TRAIT_HPP
 #define FT_CONTAINERS_ITERATOR_TRAIT_HPP
 
+#include <cstddef>
+#include <tuple>
+#include <memory>
+#include <cstddef>
+#include <iostream>
+#include <stdexcept>
+
+#include "../utils.hpp"
 #include "iterators.hpp"
+#include "reverse_iterator.hpp"
+#include "random_access_iterator.hpp"
 
 namespace ft
 {
@@ -13,7 +23,7 @@ namespace ft
 	/// types. This makes it possible to implement algorithms only in terms of iterators.
 
 	///Iterator - the iterator type to retrieve properties for.
-	template <class Iterator>
+	template <class Iter>
 	class iterator_traits
 	{
 		//The iterator category. It can be one of these:
@@ -22,19 +32,19 @@ namespace ft
 		// 3. forward_iterator_tag,
 		// 4. bidirectional_iterator_tag,
 		// 5. random_access_iterator_tag.
-		typedef typename Iterator::iterator_category	iterator_category;
+		typedef typename Iter::iterator_category	iterator_category;
 
 		//Type to express the result of subtracting one iterator from another.
-		typedef typename Iterator::difference_type		difference_type;
+		typedef typename Iter::difference_type		difference_type;
 
 		//The type of the element the iterator can point to.
-		typedef typename Iterator::value_type			value_type;
+		typedef typename Iter::value_type			value_type;
 
 		//The type of pointer to an element the iterator can point to.
-		typedef typename Iterator::pointer				pointer;
+		typedef typename Iter::pointer				pointer;
 
 		//The type of reference to an element the iterator can point to.
-		typedef typename Iterator::reference			reference;
+		typedef typename Iter::reference			reference;
 	};
 	///specializations determine the critical types associated with an object pointer of type Type* or const Type*.
 	template <class T>

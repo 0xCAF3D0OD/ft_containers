@@ -2,19 +2,22 @@
 // Created by Kevin Di nocera on 1/19/23.
 //
 
-#include <vector>
 #ifndef FT_CONTAINERS_VECTOR_HPP
 #define FT_CONTAINERS_VECTOR_HPP
 
-#include <iostream>
+
+#include <cstddef>
+#include <tuple>
 #include <memory>
 #include <cstddef>
+#include <iostream>
 #include <stdexcept>
-#include <tuple>
-#include "../iterators/iterators.hpp"
-#include "../iterators/iterator_trait.hpp"
-#include "../iterators/reverse_terator.hpp"
-#include "../iterators/random_access_iterator.hpp"
+
+#include "utils.hpp"
+#include "iterators/iterators.hpp"
+#include "iterators/iterator_trait.hpp"
+#include "iterators/reverse_iterator.hpp"
+#include "iterators/random_access_iterator.hpp"
 
 namespace ft
 {
@@ -22,7 +25,7 @@ namespace ft
  * A namespace is a declarative region that provides a scope to the identifiers (the names of types, functions,
  * variables, etc) inside it
  */
-	template<class T, class allocator = std::allocator <T> >
+	template<class T, class allocator = std::allocator<T> >
 	class vector {
 	public:
 		typedef T 												value_type;
@@ -42,8 +45,9 @@ namespace ft
 
 		/* Default constructor initialize all attribute*/
 		explicit vector(const allocator_type &alloc = allocator_type())
-				: _alloc(alloc), _container(NULL), _size(0), _capacity(0) {}
+		: _alloc(alloc), _container(NULL), _size(0), _capacity(0) {}
 
+		//fill constructor
 		/* std::uninitialized_fill_n allows you to fill a memory area with values using a copy constructor.
 		 * It takes three arguments.
 		 * * A pointer to the beginning of the memory area to be filled -> attribute _container.
@@ -55,19 +59,32 @@ namespace ft
 		 */
 		explicit vector(size_type n, const value_type &val = value_type(),
 						const allocator_type &alloc = allocator_type())
-				: _alloc(alloc), _container(NULL), _size(0), _capacity(0) {
-			_container = _alloc.allocate(n);
-			std::uninitialized_fill_n(_container, n, val);
-			_size = n;
-			_capacity = n;
-			std::cout << _size << " " << _capacity << std::endl;
+		: _alloc(alloc), _container(NULL), _size(n), _capacity(n)
+		{
+			this->_container = _alloc.allocate(n);
+			ft::uninitialized_fill_n_ptr(this->_container, n, val);
 		}
 
+		// range constructor
+		// creates vector with the range between it_start and it_end and copies the corresponding values
 		template <class InputIterator>
-		vector (InputIterator first, InputIterator last,
-				const allocator_type& alloc = allocator_type())
+		vector (InputIterator first, InputIterator last, const allocator_type& alloc = allocator_type())
+		: _alloc(alloc), _container(NULL), _size(0), _capacity(0)
 		{
-			if (value_type)
+			// calculate the size.
+			for (InputIterator tmp = first; tmp != last; ++tmp)
+				this->_size++;
+			this->_capacity = this->_size;
+			this->_container = this->_alloc.allocate(this->_capacity);
+			// fill the range from first to the end.
+			std::uninitialized_fill_n(first, this->_capacity, this->_container);
+		}
+
+		// copy constructor
+		vector (const vector& srcs)
+		: _container(NULL), _size(0), _capacity(0);
+		{
+			*this = srcs;
 		}
 
 		iterator begin() {return (iterator(_container));}
