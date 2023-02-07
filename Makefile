@@ -17,7 +17,6 @@ NAME		= converter
 
 CXX			= g++
 HXX			= incl/iterators/iterators.hpp\
-			  incl/iterators/iterator_trait.hpp\
 			  incl/iterators/reverse_iterator.hpp\
 			  incl/iterators/random_access_iterator.hpp\
 			  incl/vector.hpp\

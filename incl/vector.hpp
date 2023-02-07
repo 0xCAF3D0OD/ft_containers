@@ -15,7 +15,6 @@
 
 #include "utils.hpp"
 #include "iterators/iterators.hpp"
-#include "iterators/iterator_trait.hpp"
 #include "iterators/reverse_iterator.hpp"
 #include "iterators/random_access_iterator.hpp"
 
@@ -41,10 +40,10 @@ namespace ft
 		typedef ft::reverse_iterator<iterator>					reverse_iterator;
 		typedef ft::reverse_iterator<const_iterator>			const_reverse_iterator;
 
-		vector(void) : _alloc(0), _container(NULL), _size(0), _capacity(0);
+		vector(void) : _alloc(0), _container(NULL), _size(0), _capacity(0) {}
 
 		/* Default constructor initialize all attribute*/
-		explicit vector(const allocator_type &alloc = allocator_type())
+		explicit vector(const allocator_type& alloc = allocator_type())
 		: _alloc(alloc), _container(NULL), _size(0), _capacity(0) {}
 
 		//fill constructor
@@ -57,10 +56,11 @@ namespace ft
 		 * but without initializing these objects explicitly.
 		 * It is more efficient than using a loop to create objects and copy them one by one.
 		 */
-		explicit vector(size_type n, const value_type &val = value_type(),
-						const allocator_type &alloc = allocator_type())
+		explicit vector(size_type n, const value_type& val = value_type(),
+						const allocator_type& alloc = allocator_type())
 		: _alloc(alloc), _container(NULL), _size(n), _capacity(n)
 		{
+
 			this->_container = _alloc.allocate(n);
 			ft::uninitialized_fill_n_ptr(this->_container, n, val);
 		}
@@ -82,13 +82,22 @@ namespace ft
 
 		// copy constructor
 		vector (const vector& srcs)
-		: _container(NULL), _size(0), _capacity(0);
-		{
+		: _container(NULL), _size(0), _capacity(0) {
 			*this = srcs;
 		}
 
-		iterator begin() {return (iterator(_container));}
-		const_iterator begin() {return (const_iterator(_container));}
+		vector& operator=(const vector& other)
+		{
+
+		}
+
+		iterator begin() {
+			return (iterator(_container));
+		}
+
+//		const_iterator begin() {
+//			return (const_iterator(_container));
+//		}
 
 		~vector()
 		{
@@ -100,8 +109,6 @@ namespace ft
 		pointer 		_container;
 		size_type		_size;
 		size_type		_capacity;
-
-
 	};
 }
 #endif //FT_CONTAINERS_VECTOR_HPP

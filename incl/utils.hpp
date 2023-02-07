@@ -13,20 +13,17 @@
 #include <stdexcept>
 
 #include "iterators/iterators.hpp"
-#include "iterators/iterator_trait.hpp"
 #include "iterators/reverse_iterator.hpp"
 #include "iterators/random_access_iterator.hpp"
 
 namespace ft
 {
-	template<class pointer, class Size, class T>
-	void uninitialized_fill_n_ptr(pointer first, Size n, const T &value)
+	template < class ForwardIterator, class Size, class T, class pointer>
+	void uninitialized_fill_n_ptr (pointer first, Size n, const T &value)
 	{
 		for (; n--; ++first)
-		{
 			new (static_cast<void*>(&*first))
-				typename iterator_traits<ForwardIterator>::value_type(value);
-		}
+					typename iterator_traits<ForwardIterator>::value_type(value);
 	}
 }
 #endif //FT_CONTAINERS_UTILS_HPP

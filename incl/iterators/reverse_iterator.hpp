@@ -15,7 +15,6 @@
 
 #include "../utils.hpp"
 #include "iterators.hpp"
-#include "iterator_trait.hpp"
 #include "random_access_iterator.hpp"
 
 /*
@@ -48,10 +47,10 @@ namespace ft
 
 		/// copy constructor: The template allows the reverse iterator to take any type of iterator
 		template <class Iterator>
-		reverse_iterator (const reverse_iterator<Iterator> &rev_it){ *this = rev_it.base(); }
+		explicit reverse_iterator (const reverse_iterator<Iterator> &rev_it){ *this = rev_it.base(); }
 
 		//destructor
-		~reverse_iterator();
+		~reverse_iterator(void) {}
 
 		/// assigns another iterator adaptor
 		template< class U >

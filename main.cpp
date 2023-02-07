@@ -8,10 +8,9 @@
 
 #include "incl/utils.hpp"
 #include "incl/vector.hpp"
-#include "iterators/iterators.hpp"
-#include "iterators/iterator_trait.hpp"
-#include "iterators/reverse_iterator.hpp"
-#include "iterators/random_access_iterator.hpp"
+#include "incl/iterators/iterators.hpp"
+#include "incl/iterators/reverse_iterator.hpp"
+#include "incl/iterators/random_access_iterator.hpp"
 
 int main(void)
 {
