@@ -5,7 +5,6 @@
 #ifndef FT_CONTAINERS_VECTOR_HPP
 #define FT_CONTAINERS_VECTOR_HPP
 
-
 #include <cstddef>
 #include <tuple>
 #include <memory>
@@ -88,7 +87,21 @@ namespace ft
 
 		vector& operator=(const vector& other)
 		{
+			this->_container = other._container;
+			this->_capacity = other._capacity;
+			this->_alloc = other._alloc;
+			this->_size = other._size;
+			return (*this);
+		}
 
+		void assign(size_type count, const T& value)
+		{
+			if (this->_capacity)
+			{
+				this->_container = this->_alloc.allocate(this->_capacity);
+				for (size_type i = 0; i != count; ++i)
+					this->_container[i] = value;
+			}
 		}
 
 		iterator begin() {
