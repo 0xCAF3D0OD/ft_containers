@@ -15,11 +15,11 @@
 
 int main()
 {
-	ft::vector<char> characters;
-
-	characters.assign(5, 'a');
-	for (int i = 0; characters[i]; i++)
-		std::cout << characters[i] << std::endl;
+//	ft::vector<char> characters;
+//
+//	characters.assign(5, 'a');
+//	for (int i = 0; characters[i]; i++)
+//		std::cout << characters[i] << std::endl;
 //
 //	const std::string extra(6, 'b');
 //	characters.assign(extra.begin(), extra.end());

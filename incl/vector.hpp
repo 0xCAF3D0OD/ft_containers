@@ -93,7 +93,7 @@ namespace ft
 			this->_size = other._size;
 			return (*this);
 		}
-
+		//Replaces the contents with count copies of value.
 		void assign(size_type count, const T& value)
 		{
 			if (this->_capacity)
@@ -104,13 +104,75 @@ namespace ft
 			}
 		}
 
-		iterator begin() {
-			return (iterator(_container));
+		allocator_type get_allocator() const {
+			return (this->_alloc);
 		}
 
-//		const_iterator begin() {
-//			return (const_iterator(_container));
-//		}
+		///ELEMENT ACCESS
+		//Returns a reference to the element at specified location pos, with bounds checking.
+		//If pos is not within the range of the container, an exception of type std::out_of_range is thrown.
+		reference at(size_type pos)
+		{
+			if (pos >= this->_size)
+				throw std::out_of_range("out of range exception");
+			return (this->_container[pos]);
+		}
+
+		const_reference at (size_type pos) const
+		{
+			if (pos >= this->_size)
+				throw std::out_of_range("out of range exception");
+			return (this->_container[pos]);
+		}
+
+		reference operator[](size_type pos) {
+			return (this->_container[pos]);
+		}
+
+		const_reference operator[](size_type pos) const {
+			return (this->_container[pos]);
+		}
+
+		// Returns a reference to the first element in the container.
+		// If the return value contain '[]' no need of '*'. But if it doesn't contain '[]' the '*' is needed.
+		reference front(void) {
+			return (*(this->_container));
+		}
+
+		const_reference front(void) const {
+			return (*(this->_container));
+		}
+
+		// Returns a reference to the last element in the container.
+		reference back(void) {
+			return (this->_container[this->_size]);
+		}
+
+		const_reference back() const {
+			return (this->_container[this->_size]);
+		}
+
+		iterator begin(void) {
+			return (iterator(this->_container));
+		}
+
+		const_iterator begin(void) const {
+			return (const_iterator(this->_container));
+		}
+
+  		iterator end(void)
+		{
+			if (!this->_container)
+				return (iterator(this->_container));
+			return(iterator(this->_container[this->_size]));
+		}
+
+		const_iterator end(void) const
+		{
+			if (!this->_container)
+				return (iterator(this->_container));
+			return(const_iterator(this->_container[this->_size]));
+		}
 
 		~vector()
 		{
