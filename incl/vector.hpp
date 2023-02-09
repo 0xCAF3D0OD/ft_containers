@@ -212,18 +212,34 @@ namespace ft
 			return (this->_capacity);
 		}
 
-		//Increase the capacity of the vector (the total number of elements that the vector can hold without requiring
-		//reallocation) to a value that's greater or equal to new_cap. If new_cap is greater than the current capacity(), new storage is allocated, otherwise the function does nothing.
+		// Increase the capacity of the vector (the total number of elements that the vector can hold without requiring
+		// reallocation) to a value that's greater or equal to new_cap. If new_cap is greater than the current
+		// capacity(), new storage is allocated, otherwise the function does nothing.
 		void reserve(size_type new_cap)
 		{
 			if (new_cap > max_size())
 				std::length_error("reserve exception\n");
-			else if (n <= this->_capacity)
+			else if (new_cap <= capacity())
 				return ;
-			if (new_cap > this->_capacity)
-				this->_container = this->_alloc.allocate(new_cap);
+			pointer new_c = this->_alloc.allocate(new_cap);
+			// first argument of construct must be a pointer  to a location with enough storage space to contain
+			// an element of type value_type and the second argument must be Value to initialize the constructed
+			// element to.
+			for (size_type i = 0; i != new_cap; ++i)
+				this->_alloc.construct(new_c[i], this->_container);
+			// delete the space, then take the new size stock in
+			// new_cap and finally give to the array the new array.
+			delete [] this->_capacity;
+			this->_capacity = new_cap;
+			this->_container = new_c;
 		}
 
+		///MODIFIER
+		void clear(void)
+		{
+			delete [] this->_container;
+			
+		}
 		~vector() {
 			delete [] _container;
 		}

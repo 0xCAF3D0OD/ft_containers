@@ -15,7 +15,7 @@
 
 int main()
 {
-	ft::vector<int> v(0, 19);
+//	ft::vector<int> v(0, 19);
 
 //	std::cout << "distance(first, last) = "
 //			  << ft::distance(v.begin(), v.end()) << '\n'
