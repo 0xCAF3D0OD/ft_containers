@@ -59,9 +59,12 @@ namespace ft
 						const allocator_type& alloc = allocator_type())
 		: _alloc(alloc), _container(NULL), _size(n), _capacity(n)
 		{
-
-			this->_container = _alloc.allocate(n);
-			ft::uninitialized_fill_n_ptr(this->_container, n, val);
+			if (this->_capacity > this->max_size())
+				throw (std::length_error("cannot create ft::vector larger than max_size()"));
+			this->_container = _alloc.allocate(this->_capacity);
+//			ft::uninitialized_fill_n_ptr(this->_container, n, val);
+			for (size_type i = 0; i != n; i++)
+				this->_alloc.construct(this->_container[i], val);
 		}
 
 		// range constructor
@@ -75,8 +78,13 @@ namespace ft
 				this->_size++;
 			this->_capacity = this->_size;
 			this->_container = this->_alloc.allocate(this->_capacity);
+			for (size_type i = 0; i != this->_capacity; i++)
+			{
+				this->_alloc.construct(this->_container[i], &(first));
+				++first;
+			}
 			// fill the range from first to the end.
-			std::uninitialized_fill_n(first, this->_capacity, this->_container);
+//			std::uninitialized_fill_n(first, this->_capacity, this->_container);
 		}
 
 		// copy constructor
@@ -148,19 +156,28 @@ namespace ft
 			return (this->_container[this->_size]);
 		}
 
-		const_reference back() const {
+		const_reference back(void) const {
 			return (this->_container[this->_size]);
+		}
+
+		T* data(void) {
+			return (this->_container);
+		}
+
+		const T* data(void) const {
+			return (this->_container);
 		}
 
 		iterator begin(void) {
 			return (iterator(this->_container));
 		}
 
+		///ITERATOR
 		const_iterator begin(void) const {
 			return (const_iterator(this->_container));
 		}
 
-  		iterator end(void)
+		iterator end(void)
 		{
 			if (!this->_container)
 				return (iterator(this->_container));
@@ -174,8 +191,40 @@ namespace ft
 			return(const_iterator(this->_container[this->_size]));
 		}
 
-		~vector()
+		///CAPACITY
+		// Checks if the container has no elements.
+		bool empty(void) const {
+			if (begin() == end())
+				return (true);
+			return (false);
+		}
+
+		// Returns the number of elements in the container.
+		size_type size(void) const {
+			return (ft::distance(begin(), end()));
+		}
+
+		size_type max_size() const {
+			return (ft::distance(begin(), end()));
+		}
+
+		size_type capacity() const {
+			return (this->_capacity);
+		}
+
+		//Increase the capacity of the vector (the total number of elements that the vector can hold without requiring
+		//reallocation) to a value that's greater or equal to new_cap. If new_cap is greater than the current capacity(), new storage is allocated, otherwise the function does nothing.
+		void reserve(size_type new_cap)
 		{
+			if (new_cap > max_size())
+				std::length_error("reserve exception\n");
+			else if (n <= this->_capacity)
+				return ;
+			if (new_cap > this->_capacity)
+				this->_container = this->_alloc.allocate(new_cap);
+		}
+
+		~vector() {
 			delete [] _container;
 		}
 

@@ -15,17 +15,11 @@
 
 int main()
 {
-//	ft::vector<char> characters;
-//
-//	characters.assign(5, 'a');
-//	for (int i = 0; characters[i]; i++)
-//		std::cout << characters[i] << std::endl;
-//
-//	const std::string extra(6, 'b');
-//	characters.assign(extra.begin(), extra.end());
-//	print_vector();
-//
-//	characters.assign({'C', '+', '+', '1', '1'});
-//	print_vector();
+	ft::vector<int> v(0, 19);
+
+//	std::cout << "distance(first, last) = "
+//			  << ft::distance(v.begin(), v.end()) << '\n'
+//			  << "distance(last, first) = "
+//			  << ft::distance(v.end(), v.begin()) << '\n';
 	return (0);
 }

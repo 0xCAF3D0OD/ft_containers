@@ -25,5 +25,11 @@ namespace ft
 			new (static_cast<void*>(&*first))
 					typename iterator_traits<ForwardIterator>::value_type(value);
 	}
+
+	template< class InputIt >
+	typename ft::iterator_traits<InputIt>::difference_type
+	distance(InputIt first, InputIt last) {
+		return (last - first);
+	}
 }
 #endif //FT_CONTAINERS_UTILS_HPP
