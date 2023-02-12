@@ -5,12 +5,12 @@
 #ifndef FT_CONTAINERS_VECTOR_HPP
 #define FT_CONTAINERS_VECTOR_HPP
 
-#include <cstddef>
-#include <tuple>
-#include <memory>
-#include <cstddef>
-#include <iostream>
-#include <stdexcept>
+//#include <cstddef>
+//#include <tuple>
+//#include <memory>
+//#include <cstddef>
+//#include <iostream>
+//#include <stdexcept>
 
 #include "utils.hpp"
 #include "iterators/iterators.hpp"
@@ -49,7 +49,9 @@ namespace ft
 
 		public:
 
-			/* Default constructor initialize all attribute */
+			/* Default constructor initialize all attribute*/
+			vector(void) : _alloc(0), _container(NULL), _size(0), _capacity(0) {}
+
 			explicit vector(const allocator_type& alloc = allocator_type())
 			: _container(NULL), _alloc(alloc), _size(0), _capacity(0) {
 				this->_container = this->_alloc.allocate(this->_capacity);
