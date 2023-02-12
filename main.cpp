@@ -6,20 +6,38 @@
 #include <iterator>
 #include <algorithm>
 #include <string>
+#include <typeinfo>
 
-#include "incl/utils.hpp"
 #include "incl/vector.hpp"
 #include "incl/iterators/iterators.hpp"
-#include "incl/iterators/reverse_iterator.hpp"
-#include "incl/iterators/random_access_iterator.hpp"
+// inserting into a vector
+#include <vector>
 
-int main()
-{
-//	ft::vector<int> v(0, 19);
+//using namespace std;
+using namespace ft;
 
-//	std::cout << "distance(first, last) = "
-//			  << ft::distance(v.begin(), v.end()) << '\n'
-//			  << "distance(last, first) = "
-//			  << ft::distance(v.end(), v.begin()) << '\n';
-	return (0);
+// reverse_iterator example
+
+int main () {
+	vector<int> my_vector;
+	for (int i=0; i<10; i++) myvector.push_back(i);
+
+	typedef vector<int>::iterator iter_type;
+	// ? 9 8 7 6 5 4 3 2 1 0 ?
+	iter_type from (my_vector.begin());                     //   ^
+	//         ------>
+	iter_type until (my_vector.end());                      //                       ^
+	//
+	reverse_iterator<iter_type> rev_until (from);     // ^
+	//         <------
+	reverse_iterator<iter_type> rev_from (until);     //                     ^
+
+	std::cout << "my_vector:";
+	while (rev_from != rev_until) {
+		std::cout << ' ' << *rev_from;
+		++rev_from;
+	}
+	std::cout << '\n';
+
+	return 0;
 }

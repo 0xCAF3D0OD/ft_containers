@@ -9,31 +9,27 @@
  * */
 #pragma once
 /*
-* Random-access iterators allow to access elements at an
+* Random-access-iterators allow to access elements at an
 * arbitrary offset position relative to the element they point
-* to. This is the most complete iterators. All pointer types
+* to. This is the most complete iterators. All Pointer types
 * are also valid random-access-iterators.
 */
 namespace ft
 {
-	template<class Iter>
-	class random_access_iterator
+	template <class Category, class T, class Distance = ptrdiff_t, class Pointer = T*, class Reference = T&>
+	class random_access_iterator : public iterator_traits<iterator<Category, T, Distance, Pointer, Reference> >
 	{
 	public:
-		typedef Iter															iterator_type;
-		typedef typename ft::iterator_traits<iterator_type>::value_type			value_type;
-		typedef typename ft::iterator_traits<iterator_type>::pointer			pointer;
-		typedef typename ft::iterator_traits<iterator_type>::reference			reference;
-		typedef typename ft::iterator_traits<iterator_type>::difference_type	difference_type;
-		typedef typename ft::iterator_traits<iterator_type>::iterator_category	iterator_category;
-
+		typedef T	value_type;
+		typedef Category	iterator
 	protected:
-		pointer _ptr;
+		iterator_type _ptr;
+
 	public:
 
 		//Default constructor
 		random_access_iterator(void) : _ptr(nullptr) {}
-		random_access_iterator(pointer rhs) : _ptr(rhs) {}
+		random_access_iterator(Pointer rhs) : _ptr(rhs) {}
 
 		//Copy constructor
 		template< class type >
@@ -54,26 +50,26 @@ namespace ft
 		}
 
 		// Returns the underlying base(_ptr who is the iterator) iterator.
-		pointer base(void) const {
+		Pointer base(void) const {
 			return (this->_ptr);
 		}
 
 		// Give the lvalue of the element where is the random_access_iterator.
-		// Return the lvalue (the pointer to the element).
-		pointer operator->(void) {
+		// Return the lvalue (the Pointer to the element).
+		Pointer operator->(void) {
 			return &(this->operator*());
 		}
 
 		// Create an attribute tmp in the function and return it.
-		reference operator*(void) const {
+		Reference operator*(void) const {
 			return (*(this->_ptr));
 		}
 
-		/// return a reference to the element at relative location.
+		/// return a Reference to the element at relative location.
 		/// It returns the element at index "n" (specified as difference_type) starting from the end of
 		/// the underlying iterator (base()). The formula used to access the element is "base()[-n-1]" which means
 		/// that the element is retrieved starting from the end (base()[-1]) and moving left by n positions (-n).
-		reference operator[](difference_type n) const {
+		Reference operator[](difference_type n) const {
 			return (*(this->_ptr + n));
 		}
 

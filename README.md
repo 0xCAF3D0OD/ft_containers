@@ -130,3 +130,7 @@ Which defines the memory allocation/de-allocation model, construct/destroy eleme
   * `size_type` - An **unsigned integral type** that can represent any non-negative value of difference_type.
 
     **-** The same as `size_t`.
+
+## sources
+
+* [difference between iterator and pointer](https://stacklima.com/difference-entre-les-iterateurs-et-les-pointeurs-en-c-c-avec-des-exemples/)

@@ -13,7 +13,6 @@
 #include <stdexcept>
 
 #pragma once
-#include "../utils.hpp"
 
 /*
  * Iterator traits in C++ vector containers allow you to define iterators
@@ -21,17 +20,6 @@
  * */
 namespace ft
 {
-	//iterator
-	template <class Category, class T, class Distance = ptrdiff_t, class Pointer = T*, class Reference = T&>
-	struct iterator
-	{
-		typedef T         value_type;
-		typedef Distance  difference_type;
-		typedef Pointer   pointer;
-		typedef Reference reference;
-		typedef Category  iterator_category;
-	};
-
 	//iterator tag
 	///Marking intput iterators.
 	struct input_iterator_tag {};
@@ -56,6 +44,7 @@ namespace ft
 	template <class Iterator>
 		struct iterator_traits
 		{
+		public:
 			//The iterator category. It can be one of these:
 			// 1. input_iterator_tag,
 			// 2. output_iterator_tag,
@@ -76,6 +65,7 @@ namespace ft
 			//The type of reference to an element the iterator can point to.
 			typedef typename Iterator::reference			reference;
 		};
+
 	///specializations determine the critical types associated with an object pointer of type Type* or const Type*.
 	template <class T>
 		class iterator_traits<T*>
@@ -95,6 +85,17 @@ namespace ft
 			typedef T							value_type;
 			typedef const T*					pointer;
 			typedef const T&					reference;
+		};
+
+		//iterator
+		template <class Category, class T, class Distance = ptrdiff_t, class Pointer = T*, class Reference = T&>
+		class iterator : private iterator_traits<T*>
+		{
+			typedef T         value_type;
+			typedef Distance  difference_type;
+			typedef Pointer   pointer;
+			typedef Reference reference;
+			typedef Category  iterator_category;
 		};
 }
 
