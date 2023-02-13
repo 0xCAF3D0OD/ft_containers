@@ -79,22 +79,18 @@ namespace ft
 		}
 
 		// convert normal type to const type
-		operator random_access_iterator<const Iter>() const {
-			return (random_access_iterator<const Iter>(this->_ptr));
-		}
+//		operator random_access_iterator<const Iter>(void) const {
+//			return (random_access_iterator<const Iter>(this->_ptr));
+//		}
 
 		random_access_iterator &operator++(void) {
 			return (this->_ptr++);
 		}
 
-		random_access_iterator &operator--(void) {
-			return (this->_ptr--);
-		}
-
 		// Post-increments or post-decrements by one respectively.
 		random_access_iterator operator++(int)
 		{
-			random_access_iterator bfr = *_ptr;
+			random_access_iterator bfr = _ptr;
 			this->_ptr++;
 			return (bfr);
 		}
@@ -108,10 +104,19 @@ namespace ft
 			return (lhs._ptr + rhs._ptr);
 		}
 
+		// Returns an iterator which is advanced by n or -n positions respectively.
+		random_access_iterator operator+(difference_type n) const {
+			return (random_access_iterator(base() + n));
+		}
+
+		random_access_iterator &operator--(void) {
+			return (this->_ptr--);
+		}
+
 		// Post-increments or post-decrements by one respectively.
 		random_access_iterator operator--(int)
 		{
-			random_access_iterator bfr = *_ptr;
+			random_access_iterator bfr = _ptr;
 			this->_ptr--;
 			return (bfr);
 		}
@@ -123,11 +128,6 @@ namespace ft
 
 		friend difference_type operator-(const random_access_iterator &lhs, const random_access_iterator &rhs) {
 			return (lhs._ptr - rhs._ptr);
-		}
-
-		// Returns an iterator which is advanced by n or -n positions respectively.
-		random_access_iterator operator+(difference_type n) const {
-			return (random_access_iterator(base() + n));
 		}
 
 		// Returns an iterator which is advanced by n or -n positions respectively.

@@ -240,7 +240,9 @@ namespace ft
 					this->_alloc.construct(new_c[i], this->_container);
 				// delete the space, then take the new size stock in
 				// new_cap and finally give to the array the new array.
-				delete [] this->_capacity;
+				for (size_type del = 0; del < this->_capacity; ++del)
+					this->_alloc.destroy(this->_container[del]);
+				this->_alloc.deallocate(this->_container, this->_capacity)
 				this->_capacity = new_cap;
 				this->_container = new_c;
 			}
@@ -259,9 +261,15 @@ namespace ft
 				return (begin() + pos);
 			}
 
-//			~vector() {
-//				delete [] _container;
-//			}
+			void push_back(const T& value)
+			{
+				if (size() > capacity())
+					return ;
+			}
+
+			~vector() {
+				delete [] _container;
+			}
 
 		};
 }
