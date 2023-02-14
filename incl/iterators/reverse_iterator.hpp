@@ -47,23 +47,23 @@ namespace ft
 
 		/// copy constructor: The template allows the reverse iterator to take any type of iterator
 		template <class Iterator>
-		explicit reverse_iterator (const reverse_iterator<Iterator> &rev_it){ *this = rev_it.base(); }
+		explicit reverse_iterator (const reverse_iterator<Iterator> &other) {
+			*this = other.base();
+		}
 
 		//destructor
 		~reverse_iterator(void) {}
 
 		/// assigns another iterator adaptor
-		template< class U >
-		reverse_iterator &operator=(const reverse_iterator<U> &other)
+		template<class U>
+		reverse_iterator& operator=(const reverse_iterator<U> &other)
 		{
-			if (this != &other)
-				_iterT = other._iterT;
+			this->_iterT = other._iterT;
 			return (*this);
 		}
 
 		/// Returns the underlying base(_iterT who is the iterator) iterator.
-		iterator_type base(void) const
-		{
+		iterator_type base(void) const {
 			return (_iterT);
 		}
 
@@ -78,8 +78,7 @@ namespace ft
 		/// It returns the element at index "n" (specified as difference_type) starting from the end of
 		/// the underlying iterator (base()). The formula used to access the element is "base()[-n-1]" which means
 		/// that the element is retrieved starting from the end (base()[-1]) and moving left by n positions (-n).
-		reference operator[](difference_type n) const
-		{
+		reference operator[](difference_type n) const {
 			return (base()[-n-1]);
 		}
 
@@ -137,7 +136,7 @@ namespace ft
 			return (*this);
 		}
 
-		// The purpose of the friend kewword is for make the access to the data easier.
+		// The purpose of the friend keyword is for make the access to the data easier.
 		// `friend` let you use the variable lhs and rhs in one time, and not two like the conventional way with a template.
 		friend bool operator==(const reverse_iterator<Iter> &lhs, const reverse_iterator<Iter> &rhs) {
 			return (lhs.base() == rhs.base());

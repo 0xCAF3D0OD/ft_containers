@@ -17,6 +17,21 @@
 #include "iterators/reverse_iterator.hpp"
 #include "iterators/random_access_iterator.hpp"
 
+/* index theory
+ *
+ * (1) std::uninitialized_fill_n allows you to fill a memory area with values using a copy constructor.
+ * It takes three arguments.
+ * * A pointer to the beginning of the memory area to be filled -> attribute _container.
+ * * The number of elements to fill (of type size_t) -> variable n.
+ * * A reference to the object to be copied to fill the memory area -> variable val.
+ * This function is useful when you want to fill a memory area with objects that have a copy constructor defined,
+ * but without initializing these objects explicitly.
+ * It is more efficient than using a loop to create objects and copy them one by one.
+ *
+ * (2) Explicit, allows to force the client code to assert its intention and avoid some accidents.
+ * Explicit constructors are most useful for objects that can be instantiated using a single parameter
+
+ */
 namespace ft
 {
 /*
@@ -35,6 +50,7 @@ namespace ft
 			typedef typename allocator_type::difference_type 		difference_type;
 			typedef typename allocator_type::pointer 				pointer;
 			typedef typename allocator_type::const_pointer 			const_pointer;
+
 			// Warning: random_access_iterator take a pointer because an iterator is almost the same as an iterator.
 			typedef ft::random_access_iterator<pointer>				iterator;
 			typedef ft::random_access_iterator<const_pointer>		const_iterator;
@@ -47,6 +63,12 @@ namespace ft
 			size_type		_size;
 			size_type		_capacity;
 
+			void	ft_del(size_type capacity)
+			{
+				for (size_type del = 0; del < capacity; ++del)
+					this->_alloc.destroy(this->_container + del);
+				this->_alloc.deallocate(this->_container, capacity);
+			}
 		public:
 
 			/* Default constructor initialize all attribute */
@@ -56,15 +78,7 @@ namespace ft
 			}
 
 			//fill constructor
-			/* std::uninitialized_fill_n allows you to fill a memory area with values using a copy constructor.
-			 * It takes three arguments.
-			 * * A pointer to the beginning of the memory area to be filled -> attribute _container.
-			 * * The number of elements to fill (of type size_t) -> variable n.
-			 * * A reference to the object to be copied to fill the memory area -> variable val.
-			 * This function is useful when you want to fill a memory area with objects that have a copy constructor defined,
-			 * but without initializing these objects explicitly.
-			 * It is more efficient than using a loop to create objects and copy them one by one.
-			 */
+			//(2) see index above for explicit
 			explicit vector(size_type n, const value_type& val = value_type(),
 							const allocator_type& alloc = allocator_type())
 			: _alloc(alloc), _container(NULL), _size(n), _capacity(n)
@@ -72,7 +86,7 @@ namespace ft
 				if (this->_capacity > this->max_size())
 					throw (std::length_error("cannot create ft::vector larger than max_size()"));
 				this->_container = _alloc.allocate(this->_capacity);
-	//			ft::uninitialized_fill_n_ptr(this->_container, n, val);
+	//(1)		ft::uninitialized_fill_n_ptr(this->_container, n, val);
 				for (size_type i = 0; i != n; i++)
 					this->_alloc.construct(this->_container[i], val);
 			}
@@ -93,8 +107,6 @@ namespace ft
 					this->_alloc.construct(this->_container[i], &(first));
 					++first;
 				}
-				// fill the range from first to the end.
-	//			std::uninitialized_fill_n(first, this->_capacity, this->_container);
 			}
 
 			// copy constructor
@@ -105,10 +117,16 @@ namespace ft
 
 			vector& operator=(const vector& other)
 			{
-				this->_container = other._container;
+				if (&other == this)
+					return (*this);
+				if (this->_capacity)
+					ft_del(this->_capacity);
 				this->_capacity = other._capacity;
 				this->_alloc = other._alloc;
 				this->_size = other._size;
+				this->_container = this->_alloc.allocate(this->_capacity);
+				for (size_type i = 0; i < this->_size; i++)
+					this->_container.construct(this->_container[i], other._container[i]);
 				return (*this);
 			}
 
@@ -141,7 +159,7 @@ namespace ft
 			{
 				if (pos >= this->_size)
 					throw std::out_of_range("out of range exception");
-				return (this->_container[pos]);
+				return (this->_container + pos);
 			}
 
 			reference operator[](size_type pos) {
@@ -149,7 +167,7 @@ namespace ft
 			}
 
 			const_reference operator[](size_type pos) const {
-				return (this->_container[pos]);
+				return (this->_container + pos);
 			}
 
 			// Returns a reference to the first element in the container.
@@ -168,7 +186,7 @@ namespace ft
 			}
 
 			const_reference back(void) const {
-				return (this->_container[this->_size]);
+				return (this->_container + this->_size);
 			}
 
 			T* data(void) {
@@ -188,18 +206,13 @@ namespace ft
 				return (const_iterator(this->_container));
 			}
 
-			iterator end(void)
-			{
-				if (!this->_container)
-					return (iterator(this->_container));
-				return(iterator(this->_container[this->_size]));
+			// Pourquoi peut-on pas déréfférencer ?!
+			iterator end(void) {
+				return(iterator(this->_container + this->_size));
 			}
 
-			const_iterator end(void) const
-			{
-				if (!this->_container)
-					return (iterator(this->_container));
-				return(const_iterator(this->_container[this->_size]));
+			const_iterator end(void) const {
+				return(const_iterator(this->_container + this->_size));
 			}
 
 			///CAPACITY
@@ -237,12 +250,10 @@ namespace ft
 				// an element of type value_type and the second argument must be Value to initialize the constructed
 				// element to.
 				for (size_type i = 0; i != new_cap; ++i)
-					this->_alloc.construct(new_c[i], this->_container);
+					this->_alloc.construct(new_c + i, this->_container[i]);
 				// delete the space, then take the new size stock in
 				// new_cap and finally give to the array the new array.
-				for (size_type del = 0; del < this->_capacity; ++del)
-					this->_alloc.destroy(this->_container[del]);
-				this->_alloc.deallocate(this->_container, this->_capacity)
+				ft_del(this->capacity());
 				this->_capacity = new_cap;
 				this->_container = new_c;
 			}
@@ -264,7 +275,8 @@ namespace ft
 			void push_back(const T& value)
 			{
 				if (size() > capacity())
-					return ;
+					reserve(size());
+
 			}
 
 			~vector() {

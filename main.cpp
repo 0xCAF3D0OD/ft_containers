@@ -30,14 +30,14 @@ int main () {
 	iter_type until (my_vect.end());                      //                       ^
 	//
 	vector<int>::reverse_iterator rev_until = my_vect.begin();     // ^
-	//         <------
-	vector<int>::reverse_iterator rev_from  = my_vect.end();     //                     ^
+//	//         <------
+//	vector<int>::reverse_iterator rev_from  = my_vect.end();     //                     ^
 
-	std::cout << "my_vector:";
-	while (rev_from != rev_until) {
-		std::cout << ' ' << *rev_from;
-		++rev_from;
-	}
+//	std::cout << "my_vector:";
+//	while (rev_from != rev_until) {
+//		std::cout << ' ' << *rev_from;
+//		++rev_from;
+//	}
 	std::cout << '\n';
 
 	return 0;
