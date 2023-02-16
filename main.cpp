@@ -12,16 +12,23 @@
 using namespace ft;
 // reverse_iterator example
 
+#include <iostream>
+//#include <iterator>
+//#include <list>
+//#include <vector>
+
 int main()
 {
-	ft::vector<std::string> letters;
+	// Create a vector containing integers
+	vector<int> v (7, 5, 16, 8);
 
-	letters.push_back("abc");
-	std::string s{"def"};
-	letters.push_back(std::move(s));
-
-	std::cout << "std::vector `letters` holds: ";
-	for (auto&& e : letters) std::cout << std::quoted(e) << ' ';
-
-	std::cout << "\nMoved-from string `s` holds: " << std::quoted(s) << '\n';
+	// Add two more integers to vector
+	v.push_back(25);
+	v.push_back(13);
+	// Print out the vector
+	std::cout << "v = { ";
+	for (size_t n = 0; n < v.size(); ++n)
+		std::cout << n << ", ";
+	std::cout << "}; \n";
+	return (0);
 }

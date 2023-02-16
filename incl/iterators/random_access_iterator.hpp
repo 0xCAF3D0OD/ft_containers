@@ -83,8 +83,10 @@ namespace ft
 //			return (random_access_iterator<const Iter>(this->_ptr));
 //		}
 
-		random_access_iterator &operator++(void) {
-			return (this->_ptr++);
+		random_access_iterator &operator++(void)
+		{
+			this->_ptr++;
+			return (*this);
 		}
 
 		// Post-increments or post-decrements by one respectively.
@@ -97,7 +99,7 @@ namespace ft
 
 		//Pourquoi trois fois le meme operateur
 		random_access_iterator operator+(size_t index) const {
-			return (this->_ptr + index);
+			return (random_access_iterator(this->_ptr + index));
 		}
 
 		friend difference_type operator+(const random_access_iterator &lhs, const random_access_iterator &rhs) {
@@ -109,8 +111,10 @@ namespace ft
 			return (random_access_iterator(base() + n));
 		}
 
-		random_access_iterator &operator--(void) {
-			return (this->_ptr--);
+		random_access_iterator &operator--(void)
+		{
+			this->_ptr--;
+			return (*this);
 		}
 
 		// Post-increments or post-decrements by one respectively.
