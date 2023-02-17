@@ -17,18 +17,18 @@ using namespace ft;
 //#include <list>
 //#include <vector>
 
+
 int main()
 {
-	// Create a vector containing integers
-	vector<int> v (7, 5, 16, 8);
+	vector<std::string> letters;
 
-	// Add two more integers to vector
-	v.push_back(25);
-	v.push_back(13);
-	// Print out the vector
-	std::cout << "v = { ";
-	for (size_t n = 0; n < v.size(); ++n)
-		std::cout << n << ", ";
-	std::cout << "}; \n";
-	return (0);
+	letters.push_back("abc");
+	std::string s = "def";
+	letters.push_back(s);
+
+	std::cout << "std::vector `letters` holds: ";
+	for (size_t e = 0; e < letters.size(); ++e)
+		std::cout << letters[e] << ' ';
+
+	std::cout << "\nMoved-from string `s` holds: " << s << '\n';
 }

@@ -73,7 +73,7 @@ namespace ft
 
 			/* Default constructor initialize all attribute */
 			explicit vector(const allocator_type& alloc = allocator_type())
-			: _container(NULL), _alloc(alloc), _size(0), _capacity(0) {
+			: _alloc(alloc), _container(NULL), _size(0), _capacity(0) {
 				this->_container = this->_alloc.allocate(this->_capacity);
 			}
 
@@ -265,22 +265,28 @@ namespace ft
 				this->_size = 0;
 			}
 
-			iterator insert(const_iterator pos, const T& value)
-			{
+			iterator insert(const_iterator pos, const T& value) {
 				this->insert(pos, 1, value);
-				std::cout << value << " " << pos << " " << begin() + pos << std::endl;
 				return (begin() + pos);
 			}
-
+			//Adding an element at the end of the array.
 			void push_back(const T& value)
 			{
 				if (size() > capacity())
-					reserve(size());
-
+				{
+					if (size() > max_size())
+						std::length_error("push_back causes a reallocation that exceed max_size\n");
+					reserve(this->_capacity * 2);
+				}
+				//Adding the element to the end of the array
+				// -> _container + the size of the array then the value to add.
+				this->_alloc.construct(this->_container + this->_size, value);
+				//Adding 1 to the array for the new element added.
+				this->_size++;
 			}
 
 			~vector() {
-				delete [] _container;
+				ft_del(this->capacity());
 			}
 
 		};

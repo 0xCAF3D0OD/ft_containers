@@ -28,7 +28,7 @@ MKDIR		= mkdir
 CP			= cp -f
 RM			= rm -f
 
-CXXFLAGS	= #-std=c++98 -Wall -Wextra -Werror -g
+CXXFLAGS	= -std=c++98 -Wall -Wextra -Werror -g
 
 
 all:		${NAME}
