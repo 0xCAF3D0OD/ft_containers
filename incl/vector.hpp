@@ -229,7 +229,7 @@ namespace ft
 			}
 
 			size_type max_size() const {
-				return (ft::distance(begin(), end()));
+				return (this->_alloc.max_size());
 			}
 
 			size_type capacity() const {
@@ -265,10 +265,14 @@ namespace ft
 				this->_size = 0;
 			}
 
-			iterator insert(const_iterator pos, const T& value) {
+			iterator insert(const_iterator pos, const T& value)
+			{
+				size_type idx = ft::distance(begin(), pos);
 				this->insert(pos, 1, value);
-				return (begin() + pos);
+				return (iterator(this->_container + idx));
 			}
+
+
 			//Adding an element at the end of the array.
 			void push_back(const T& value)
 			{
